@@ -1,6 +1,7 @@
 'Community.News:Category':
   superTypes:
     'Neos.Neos:Document': true
+    'Community.News:Mixin.VirtualNewsAware': true
   constraints:
     nodeTypes:
       '*': false

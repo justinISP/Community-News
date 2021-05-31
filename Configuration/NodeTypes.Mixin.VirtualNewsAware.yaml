@@ -1,0 +1,19 @@
+'Community.News:Mixin.VirtualNewsAware':
+  abstract: true
+  ui:
+    inspector:
+      groups:
+        display:
+          label: 'Display'
+          position: 10
+  properties:
+    virtualNews:
+      type: reference
+      ui:
+        label: 'Virtual News Document'
+        reloadIfChanged: true
+        inspector:
+          group: 'display'
+          position: 10
+          editorOptions:
+            nodeTypes: [ 'Community.News:VirtualNews' ]
