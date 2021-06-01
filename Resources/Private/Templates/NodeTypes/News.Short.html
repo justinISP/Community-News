@@ -1,6 +1,19 @@
 {namespace neos=Neos\Neos\ViewHelpers}
 
-<neos:link.node node="{node}">
+<f:if condition="{virtualNewsNode}">
+    <f:then>
+        <neos:link.node node="{virtualNewsNode}" arguments="{node: node}">
+            <f:render section="content"/>
+        </neos:link.node>
+    </f:then>
+    <f:else>
+        <neos:link.node node="{node}">
+            <f:render section="content"/>
+        </neos:link.node>
+    </f:else>
+</f:if>
+
+<f:section name="content">
     <!-- Creation Date -->
     <p><f:format.date date="{publishDate}" format="d.m.Y H:i" /></p>
 
@@ -14,4 +27,4 @@
     <f:if condition="{author}">
         <p>{author.properties.title}</p>
     </f:if>
-</neos:link.node>
+</f:section>

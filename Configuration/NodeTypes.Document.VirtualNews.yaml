@@ -1,0 +1,10 @@
+'Community.News:VirtualNews':
+  superTypes:
+    'Neos.Neos:Document': true
+  constraints:
+    nodeTypes:
+      '*': false
+  ui:
+    label: 'Virtual News Display'
+    icon: 'icon-ghost'
+    group: 'news'
