@@ -1,12 +1,28 @@
 prototype(Community.News:VirtualNews) < prototype(Community.News:News) {
-    body.@context.newsNode = ${q(site).find('#' + request.arguments.news).get(0)}
     body {
+        @context {
+            newsNode = ${q(site).find('#' + request.arguments.news).get(0)}
+            newsNode.@if.hasNews = ${request.arguments.news}
+        }
+
         title = ${q(newsNode).property('title')}
         publishDate = ${q(newsNode).property('publishDate')}
         teaser = ${q(newsNode).property('teaser')}
         author = ${q(newsNode).property('author')}
 
-        main.@context.node = ${newsNode}
+        main >
+        main = Neos.Fusion:Case {
+            hasNews {
+                condition = ${newsNode != null}
+                renderer = Neos.Neos:PrimaryContent {
+                    nodePath = ${newsNode.path + '/main'}
+                }
+            }
+            empty {
+                condition = true
+                renderer = '<p>Keine News gefunden.</p>'
+            }
+        }
         categories.collection = ${q(newsNode).property('categories')}
         relatedNews.@context.node = ${newsNode}
     }
